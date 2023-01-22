@@ -1,3 +1,9 @@
+ const {
+    error,
+    trigger,
+    isMutating,
+  } = useSWRMutation('/api/message', createMessage)
+
 const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     // trigger mutation with current message, userid, and timestamp
