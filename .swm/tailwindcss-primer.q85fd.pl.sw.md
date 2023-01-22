@@ -6,7 +6,7 @@ app_version: 1.0.17
 ---
 
 <!-- Intro - Do not remove this comment -->
-Hi! So, here's the deal. Here at {{COMPANY.NAME}} we love utility-first CSS, so Tailwind is our go-to. If you're coming from a MaterialUI (or other design systems like CSS-in-JS, etc.), this should hopefully give you an idea of what Tailwind even is, howw it works, and how to get started with our custom design token system.
+Hi! So, here's the deal. Here at {{COMPANY.NAME}} we love utility-first CSS, so Tailwind is our go-to. If you're coming from a MaterialUI (or other design systems like CSS-in-JS, etc.), this should hopefully give you an idea of what Tailwind even is, how it works, and how to get started with our custom design token system.
 
 /
 
