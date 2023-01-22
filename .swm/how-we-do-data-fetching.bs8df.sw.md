@@ -15,11 +15,11 @@ We use SWR's `useMutation` hook to define remote mutations that are **ONLY** tri
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 ChatFeed.tsx
 ```tsx
-1       const {
-2          error,
-3          trigger,
-4          isMutating,
-5        } = useSWRMutation('/api/message', createMessage)
+2       const {
+3          error,
+4          trigger,
+5          isMutating,
+6        } = useSWRMutation('/api/message', createMessage)
 ```
 
 <br/>
@@ -32,20 +32,18 @@ And then, within the form submit event handler `handleSubmit`, you can call the 
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 ChatFeed.tsx
 ```tsx
-7      const handleSubmit = (event: React.FormEvent) => {
-8          event.preventDefault();
-9          // trigger mutation with current message, userid, and timestamp
-10         trigger({
-11           content: newMessage,
-12           userId: currentUserID?.db_userIDByEmail,
-13           timestamp: epochToTimestampString(
-14             Math.floor(new Date().getTime() / 1000.0)
-15           ),
-16         });
-17         // then reset message and redisable button
-18         setNewMessage("");
-19         setSubmitDisabled(true);
-20       };
+8      const handleSubmit = (event: React.FormEvent) => {
+9          event.preventDefault();
+10         // trigger mutation with current message, userid, and timestamp
+11         trigger({
+12           content: newMessage,
+13           userId: currentUserID?.db_userIDByEmail,
+14           timestamp: Date.now().toString()
+15         });
+16         // then reset message and redisable button
+17         setNewMessage("");
+18         setSubmitDisabled(true);
+19       };
 ```
 
 <br/>
