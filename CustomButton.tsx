@@ -1,8 +1,3 @@
-let submitDisabled = false;
-let isMutating = false;
-
-
-
 import React from "react";
 
 const CustomButton = () => {
