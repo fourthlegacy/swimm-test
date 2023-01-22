@@ -13,20 +13,22 @@ This is a custom button!
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 CustomButton.tsx
 ```tsx
-1      import React from "react";
-2      
+1      
+2      import React from "react";
 3      const CustomButton = () => {
 4        return (
 5          <button
 6            type="submit"
-7            className="z-20 w-1/6 rounded-r-full bg-teal-500 py-2 px-4 font-bold text-white hover:bg-teal-700"
-8          >
-9            Send
-10         </button>
-11       );
-12     };
-13     
-14     export default CustomButton;
+7            className="z-20 w-1/6 rounded-r-full bg-teal-500 py-2 px-4 font-bold text-white hover:bg-teal-700 disabled:bg-teal-200 disabled:text-gray-500"
+8            disabled={submitDisabled || isMutating}
+9          >
+10           Send
+11         </button>
+12       );
+13     };
+14     
+15     export default CustomButton;
+16     
 ```
 
 <br/>
