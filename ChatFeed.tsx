@@ -1,3 +1,4 @@
+
  const {
     error,
     trigger,
@@ -10,9 +11,7 @@ const handleSubmit = (event: React.FormEvent) => {
     trigger({
       content: newMessage,
       userId: currentUserID?.db_userIDByEmail,
-      timestamp: epochToTimestampString(
-        Math.floor(new Date().getTime() / 1000.0)
-      ),
+      timestamp: Date.now().toString()
     });
     // then reset message and redisable button
     setNewMessage("");
