@@ -2,7 +2,7 @@ import React from "react";
 
 type Props = {};
 
-const CustomButton = (props: Props) => {
+const CustomButton = () => {
   return <button>
     Submit
   </button>
