@@ -38,13 +38,19 @@ And then, within the form submit event handler `handleSubmit`, you can call the 
 10         trigger({
 11           content: newMessage,
 12           userId: currentUserID?.db_userIDByEmail,
-13           timestamp: Date.now().toString()
-14         });
-15         // then reset message and redisable button
-16         setNewMessage("");
-17         setSubmitDisabled(true);
-18       };
+13           timestamp: epochToTimestampString(
+14             Math.floor(new Date().getTime() / 1000.0)
+15           ),
+16         });
+17         // then reset message and redisable button
+18         setNewMessage("");
+19         setSubmitDisabled(true);
+20       };
 ```
+
+<br/>
+
+<br/>
 
 <br/>
 
