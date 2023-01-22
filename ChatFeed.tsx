@@ -1,3 +1,22 @@
+import useSWRMutation from 'swr/mutation'
+import React from 'react'
+
+const currentUserID = {
+  db_userIDByEmail : "3490238409"
+}
+
+function epochToTimestampString(timestamp) {
+  return "lol"
+}
+
+function createMessage() {
+  // do things
+}
+
+const [newMessage, setNewMessage] = React.useState("second")
+const [submitDisabled, setSubmitDisabled] = React.useState(false)
+
+
 
  const {
     error,
@@ -11,7 +30,9 @@ const handleSubmit = (event: React.FormEvent) => {
     trigger({
       content: newMessage,
       userId: currentUserID?.db_userIDByEmail,
-      timestamp: Date.now().toString()
+      timestamp: epochToTimestampString(
+        Math.floor(new Date().getTime() / 1000.0)
+      ),
     });
     // then reset message and redisable button
     setNewMessage("");
