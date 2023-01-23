@@ -5,50 +5,72 @@ file_version: 1.1.1
 app_version: 1.0.17
 ---
 
-## References
-* Other relevant documents
-* Link to PRD
+<br/>
 
 ## Goals
 
-Main KPIs of this feature
+Here's how our NextJS frontend, NextAuth, and our Backend-for-Frontend (BFF) server coordinate to do auth, show online users, and GET and POST messages.
 
 ## High level design
-* {{Flow chart, like this one}}
 
 <br/>
 
 <!--MERMAID {width:100}-->
 ```mermaid
 sequenceDiagram
-Service A->>+Service B: GET /objects/{id}
+NextJS Frontend->>+NextAuth: POST /api/auth/signIn
 
-Service B\-\-\>>Service A: 200 OK (object)
-Service A->>+Service C: GET /data/{object\_internal\_id}
-<br/>Service C\-\-\>>Service A: 200 OK
+NextAuth->>Auth DB: SPROC sessionToken
+
+Auth DB-->>NextAuth: sessionToken
+NextAuth-->>NextJS Frontend: 200 OK (currentUser object)
+NextJS Frontend->>BFF: GET /allSessions
+
+BFF->>Auth DB: SELECT sessions
+
+Auth DB-->>BFF: sessions
+BFF-->>NextJS Frontend: 200 OK (object)
+
+NextJS Frontend->>BFF: GET /allMessages
+
+BFF->>Messages DB: SELECT messages
+
+Messages DB-->>BFF: messages
+
+BFF-->>NextJS Frontend: 200 OK (object)
+NextJS Frontend->>BFF: POST/message
+
+BFF->>Messages DB: INSERT message
+
+Messages DB-->>BFF: message \_id
+
+BFF-->>NextJS Frontend: 200 OK (object)
 ```
-<!--MCONTENT {content: "sequenceDiagram<br/>\nService A->>+Service B: GET /objects/{id}\n\nService B\\-\\-\\>>Service A: 200 OK (object)<br/>\nService A->>+Service C: GET /data/{object\\_internal\\_id}<br/>\n<br/>Service C\\-\\-\\>>Service A: 200 OK<br/>"} --->
+<!--MCONTENT {content: "sequenceDiagram<br/>\nNextJS Frontend->>+NextAuth: POST /api/auth/signIn\n\nNextAuth->>Auth DB: SPROC sessionToken\n\nAuth DB\\-\\-\\>>NextAuth: sessionToken<br/>\nNextAuth\\-\\-\\>>NextJS Frontend: 200 OK (currentUser object)<br/>\nNextJS Frontend->>BFF: GET /allSessions\n\nBFF->>Auth DB: SELECT sessions\n\nAuth DB\\-\\-\\>>BFF: sessions<br/>\nBFF\\-\\-\\>>NextJS Frontend: 200 OK (object)\n\nNextJS Frontend->>BFF: GET /allMessages\n\nBFF->>Messages DB: SELECT messages\n\nMessages DB\\-\\-\\>>BFF: messages\n\nBFF\\-\\-\\>>NextJS Frontend: 200 OK (object)<br/>\nNextJS Frontend->>BFF: POST/message\n\nBFF->>Messages DB: INSERT message\n\nMessages DB\\-\\-\\>>BFF: message \\_id\n\nBFF\\-\\-\\>>NextJS Frontend: 200 OK (object)"} --->
 
 <br/>
 
-
-* DB changes
-* UI components
-* What is stored (e.g., in the state, local storage...)
+*   DB changes
+    
+*   UI components
+    
+*   What is stored (e.g., in the state, local storage...)
+    
 
 ## Third party integrations
-* Logs
-* Analytics
+
+*   Logs
+    
+*   Analytics
+    
 
 ## Tests to be added
-
 
 ## Migrations
 
 ## Security implications
 
 ## Roll-out plan
-
 
 <br/>
 
